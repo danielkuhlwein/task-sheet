@@ -1,0 +1,16 @@
+// Global Styles
+
+@import "node_modules/bootstrap-4-grid/scss/grid.scss";
+@import "src/styles/custom-theme.scss";
+@import "src/styles/overrides.scss";
+@import "src/styles/utility.scss";
+@import "src/styles/colours.scss";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}

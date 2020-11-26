@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  // Solving CORS issues (remove 'http://localhost:3000' for dev and see 'proxy.conf.json')
+  apiURL: '/api/tasks'
 };
 
 /*

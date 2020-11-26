@@ -1,0 +1,24 @@
+{
+  "tasks": [{
+      "id": 1,
+      "name": "Feed the cats 🍽",
+      "description": "Dry food and wet food",
+      "estimate": 10,
+      "state": 2
+    },
+    {
+      "id": 2,
+      "name": "Brush the cats 💈",
+      "description": "Yes, all 3 of them...",
+      "estimate": 30,
+      "state": 1
+    },
+    {
+      "id": 3,
+      "name": "Play with the cats! 😺",
+      "description": "Tael loves crinkles, Kenobi loves rattly mice, and Tanuki likes springs 🪀",
+      "estimate": 40,
+      "state": 0
+    }
+  ]
+}

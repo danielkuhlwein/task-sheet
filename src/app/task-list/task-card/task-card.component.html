@@ -1,0 +1,60 @@
+<mat-card class="task-card" [formGroup]="form" [@taskIn]="'in'" [@taskOut]="taskOutAnimationStatus">
+
+  <div class="d-flex align-items-start">
+
+    <!-- Name -->
+    <div class="w-100 mr-10">
+      <h2 *ngIf="task.name">{{task.name}}</h2>
+      <mat-form-field appearance="fill" class="w-100" *ngIf="!task.name">
+        <mat-label>Name</mat-label>
+        <input matInput #name formControlName="name" required maxLength="100" dkAutoFocus (blur)="saveName()">
+      </mat-form-field>
+    </div>
+
+    <!-- State -->
+    <button mat-flat-button #stateButton tabindex="-1" class="state-btn ml-auto" (click)="changeState()" [ngClass]="{
+        'state-planned-bg': task.state === 0,
+        'state-progress-bg': task.state === 1,
+        'state-completed-bg': task.state === 2}" matTooltip="State">
+      {{task.state === 0 ? 'Planned' : task.state === 1 ? 'In Progress' : 'Completed'}}
+    </button>
+
+  </div>
+
+  <div class="d-flex flex-column">
+
+    <!-- Description -->
+    <h4 *ngIf="task.description" [ngClass]="{'mb-0': task.estimate && task.description}">
+      {{task.description}}
+    </h4>
+    <mat-form-field appearance="fill" class="w-100" *ngIf="!task.description"
+      (blur)="task.description = description.value">
+      <mat-label>Description</mat-label>
+      <textarea matInput [matTextareaAutosize]="true" [matAutosizeMinRows]="2" [matAutosizeMaxRows]="6" #description
+        formControlName="description" required maxLength="250" (blur)="saveDescription()"></textarea>
+      <mat-hint align="end">{{description.value.length}} / 250</mat-hint>
+    </mat-form-field>
+
+    <div class="d-flex align-items-end">
+
+      <!-- Estimate -->
+      <h4 *ngIf="task.estimate !== undefined" class="mb-0 opacity-5">{{task.estimate}} min</h4>
+      <div *ngIf="!task.estimate" class="d-flex flex-column align-items-start w-100">
+        <span class="mat-caption opacity-7">Estimate (min):</span>
+        <mat-slider #slider class="p-0 w-100 mr-3" [max]="60" [min]="0" [step]="5" [thumbLabel]="true"
+          [tickInterval]="1" (blur)="saveEstimate(slider.value ? slider.value : 0)">
+        </mat-slider>
+      </div>
+
+      <!-- Delete -->
+      <button mat-icon-button tabindex="-1" color="warn" class="ml-auto" (click)="delete()" matTooltip="Delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </div>
+
+  </div>
+
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+</mat-card>
